@@ -36,13 +36,7 @@ CSS3 — Styling, layout, animations, and flip card effects.
 
 JavaScript — Used for interactive elements such as flipping cards and navigation link activation.
 
-File Structure
-.
-├── index.html      # Main HTML structure
-├── styles.css      # Styling and layout definitions
-├── script.js       # JavaScript for interactivity
-├── images/         # Contains profile picture
-└── files/          # Contains resume PDF
+
 
 Usage
 
