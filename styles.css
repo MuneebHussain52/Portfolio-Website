@@ -1,0 +1,409 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+h1 {
+  margin: 20px;
+}
+
+.header {
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+}
+.header ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.header li {
+  float: left;
+}
+
+.header li a {
+  display: block;
+
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: #fff;
+}
+.header li a:hover {
+  cursor: pointer;
+  background-color: #111;
+}
+.about {
+  margin: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.about:hover {
+  background: linear-gradient(to right, #ff0000, #00ff00, #0000ff, yellow);
+  cursor: pointer;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.about p {
+  margin: 20px;
+}
+.about img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+.about h2 {
+  margin: 10px;
+}
+
+.skills {
+  padding: 20px;
+  margin: 20px;
+
+  background: #fff; /* Card background */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.skills:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.15),
+    0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.skills ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.skills ul li {
+  margin: 10px;
+  padding: 15px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 250px;
+  height: 250px;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.skills li:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.15),
+    0 12px 24px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.skills:hover {
+  background: linear-gradient(to right, #ff0000, #00ff00, #0000ff, yellow);
+  cursor: pointer;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.qualification {
+  padding: 20px;
+  margin: 20px;
+
+  background: #fff; /* Card background */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.qualification ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.qualification ul li {
+  margin: 10px;
+  padding: 15px;
+  font-weight: bold;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 300px;
+  height: 300px;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.qualification:hover {
+  background: linear-gradient(to right, #ff0000, #00ff00, #0000ff, yellow);
+  cursor: pointer;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.qualification ul li:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.15),
+    0 12px 24px rgba(0, 0, 0, 0.1);
+  background-color: #ffff;
+}
+
+.projects {
+  padding: 10px;
+  margin: 15px;
+  background: #fff; /* Card background */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.projects:hover {
+  background: linear-gradient(to right, #ff0000, #00ff00, #0000ff, yellow);
+  cursor: pointer;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.projects ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.projects li {
+  margin: 10px;
+  padding: 15px;
+  font-weight: bold;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 300px;
+  height: 300px;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.projects li:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.15),
+    0 12px 24px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.contact {
+  padding: 10px;
+
+  /* Card background */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.contact:hover {
+  background: linear-gradient(to right, #ff0000, #00ff00, #0000ff, yellow);
+  cursor: pointer;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.contact ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.contact li {
+  margin: 10px;
+
+  margin: 10px;
+  padding: 15px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 300px;
+  height: 300px;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.contact ul li:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.15),
+    0 12px 24px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.resume {
+  padding: 10px;
+
+  background: #fff; /* Card background */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.resume:hover {
+  background: linear-gradient(to right, #ff0000, #00ff00, #0000ff, yellow);
+  cursor: pointer;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.resume a {
+  text-decoration: none;
+  color: #0077cc;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+.resume a:hover {
+  color: #0055aa;
+  text-decoration: underline;
+}
+
+.footer {
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+}
+
+/* Add this at the end of your CSS */
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.flipped {
+  transform: rotateY(180deg);
+}
