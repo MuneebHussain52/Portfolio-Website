@@ -435,29 +435,74 @@ body {
 }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 768px) {
+
+/* Extra Small Devices (Mobile: 320px – 480px) */
+@media (max-width: 480px) {
   .header {
     flex-direction: column;
-    padding: 16px 20px;
-    gap: 12px;
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .header h1 {
+    font-size: 1rem;
+    padding: 12px 0;
   }
 
   .header ul {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 2px;
   }
 
   .header li a {
-    padding: 10px 12px;
-    font-size: 0.85rem;
+    padding: 8px 10px;
+    font-size: 0.7rem;
   }
 
   .about {
-    padding: 60px 20px;
+    padding: 40px 16px;
+  }
+
+  .about img {
+    width: 120px;
+    height: 120px;
   }
 
   .about h2 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+  }
+
+  .about h3 {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .about p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .social-links {
+    gap: 10px;
+  }
+
+  .social-links a {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+
+  .skills h2,
+  .qualification h2,
+  .projects h2,
+  .achievements h2,
+  .contact h2,
+  .resume h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
   }
 
   .skills,
@@ -466,12 +511,136 @@ body {
   .achievements,
   .contact,
   .resume {
-    padding: 40px 20px;
+    padding: 30px 16px;
+  }
+
+  .skills ul,
+  .qualification ul,
+  .projects ul,
+  .achievements ul {
+    gap: 15px;
   }
 
   .card {
+    width: 140px;
+    height: 140px;
+  }
+
+  .projects .card,
+  .achievements .card,
+  .qualification .card {
     width: 160px;
     height: 160px;
+  }
+
+  .card-front,
+  .card-back {
+    padding: 15px;
+    font-size: 0.95rem;
+  }
+
+  .card-front {
+    font-size: 0.9rem;
+  }
+
+  .card-back {
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .card-back a {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+  }
+
+  .contact li {
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    min-width: 150px;
+  }
+
+  .resume a {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+
+  .footer {
+    padding: 16px 20px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Small Tablets (481px – 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .header {
+    flex-direction: row;
+    padding: 14px 24px;
+    gap: 16px;
+  }
+
+  .header h1 {
+    font-size: 1.2rem;
+  }
+
+  .header ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .header li a {
+    padding: 12px 14px;
+    font-size: 0.8rem;
+  }
+
+  .about {
+    padding: 50px 24px;
+  }
+
+  .about img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .about h2 {
+    font-size: 2rem;
+  }
+
+  .about h3 {
+    font-size: 0.9rem;
+  }
+
+  .about p {
+    font-size: 0.95rem;
+    max-width: 600px;
+  }
+
+  .social-links a {
+    padding: 9px 20px;
+    font-size: 0.85rem;
+  }
+
+  .skills h2,
+  .qualification h2,
+  .projects h2,
+  .achievements h2,
+  .contact h2,
+  .resume h2 {
+    font-size: 1.6rem;
+  }
+
+  .skills,
+  .qualification,
+  .projects,
+  .achievements,
+  .contact,
+  .resume {
+    padding: 45px 24px;
+  }
+
+  .card {
+    width: 180px;
+    height: 180px;
   }
 
   .projects .card,
@@ -479,5 +648,71 @@ body {
   .qualification .card {
     width: 240px;
     height: 240px;
+  }
+
+  .card-front,
+  .card-back {
+    padding: 18px;
+  }
+
+  .card-front {
+    font-size: 1rem;
+  }
+
+  .card-back {
+    font-size: 0.8rem;
+  }
+
+  .card-back a {
+    font-size: 0.75rem;
+    padding: 4px 11px;
+  }
+
+  .contact li {
+    padding: 18px 28px;
+    font-size: 0.95rem;
+    min-width: 180px;
+  }
+
+  .resume a {
+    padding: 13px 32px;
+    font-size: 0.95rem;
+  }
+
+  .footer {
+    padding: 20px 24px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Large Tablets & Desktops (769px and above) */
+@media (min-width: 769px) {
+  /* Default desktop styles already applied above */
+}
+
+/* Extra Large Screens (1200px and above) */
+@media (min-width: 1200px) {
+  .header {
+    padding: 0 60px;
+  }
+
+  .about {
+    padding: 100px 60px;
+  }
+
+  .skills,
+  .qualification,
+  .projects,
+  .achievements,
+  .contact,
+  .resume {
+    padding: 80px 60px;
+  }
+
+  .skills ul,
+  .qualification ul,
+  .projects ul,
+  .achievements ul {
+    gap: 24px;
   }
 }
