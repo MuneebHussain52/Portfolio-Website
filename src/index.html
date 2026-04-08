@@ -3,338 +3,1412 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Muneeb Hussain Anjam | MERN Stack Developer</title>
+    <title>Muneeb Hussain | MERN Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Cabinet+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #070a0f;
+        --bg2: #0c1118;
+        --surface: #111820;
+        --surface2: #1a2332;
+        --border: rgba(99, 210, 255, 0.12);
+        --accent: #63d2ff;
+        --accent2: #00ff9d;
+        --accent3: #ff6b6b;
+        --text: #e8f4f8;
+        --text-dim: #7a9bb5;
+        --glow: 0 0 30px rgba(99, 210, 255, 0.15);
+        --glow-strong: 0 0 60px rgba(99, 210, 255, 0.25);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Cabinet Grotesk", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        overflow-x: hidden;
+        cursor: none;
+      }
+
+      /* Custom cursor */
+      .cursor {
+        width: 10px;
+        height: 10px;
+        background: var(--accent);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transition: transform 0.1s ease;
+        mix-blend-mode: screen;
+      }
+      .cursor-ring {
+        width: 36px;
+        height: 36px;
+        border: 1.5px solid var(--accent);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9998;
+        transition: all 0.15s ease;
+        opacity: 0.5;
+      }
+
+      /* Animated grid background */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(99, 210, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(99, 210, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 20px 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(7, 10, 15, 0.85);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-logo {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 1.2rem;
+        color: var(--text);
+        text-decoration: none;
+        letter-spacing: -0.5px;
+      }
+
+      .nav-logo span {
+        color: var(--accent);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 32px;
+      }
+
+      nav ul a {
+        text-decoration: none;
+        color: var(--text-dim);
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        transition: color 0.2s;
+        position: relative;
+      }
+
+      nav ul a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--accent);
+        transition: width 0.3s ease;
+      }
+
+      nav ul a:hover {
+        color: var(--accent);
+      }
+      nav ul a:hover::after {
+        width: 100%;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 120px 48px 80px;
+        overflow: hidden;
+      }
+
+      .hero-glow {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(99, 210, 255, 0.08) 0%,
+          transparent 70%
+        );
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        animation: pulse-glow 4s ease-in-out infinite;
+      }
+
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          opacity: 0.6;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.1);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 900px;
+        text-align: center;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 16px;
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        font-family: "DM Mono", monospace;
+        font-size: 0.75rem;
+        color: var(--accent);
+        background: rgba(99, 210, 255, 0.05);
+        margin-bottom: 32px;
+        animation: fade-up 0.8s ease both;
+      }
+
+      .hero-badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent2);
+        animation: blink 1.5s infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.2;
+        }
+      }
+
+      .hero h1 {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -2px;
+        margin-bottom: 24px;
+        animation: fade-up 0.8s 0.1s ease both;
+      }
+
+      .hero h1 .name-accent {
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-role {
+        font-family: "DM Mono", monospace;
+        font-size: 1rem;
+        color: var(--text-dim);
+        margin-bottom: 40px;
+        animation: fade-up 0.8s 0.2s ease both;
+      }
+
+      .hero-role .highlight {
+        color: var(--accent2);
+      }
+
+      .hero-desc {
+        max-width: 580px;
+        margin: 0 auto 48px;
+        font-size: 1.05rem;
+        color: var(--text-dim);
+        line-height: 1.8;
+        animation: fade-up 0.8s 0.3s ease both;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+        animation: fade-up 0.8s 0.4s ease both;
+      }
+
+      .btn-primary {
+        padding: 14px 32px;
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 6px;
+        font-family: "Cabinet Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        letter-spacing: 0.5px;
+        cursor: none;
+      }
+
+      .btn-primary:hover {
+        background: var(--accent2);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 255, 157, 0.3);
+      }
+
+      .btn-outline {
+        padding: 14px 32px;
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-family: "Cabinet Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        letter-spacing: 0.5px;
+        cursor: none;
+      }
+
+      .btn-outline:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      .hero-avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 2px solid var(--border);
+        object-fit: cover;
+        margin: 0 auto 32px;
+        display: block;
+        box-shadow: var(--glow-strong);
+        animation: fade-up 0.8s ease both;
+        position: relative;
+      }
+
+      .avatar-wrap {
+        position: relative;
+        width: 140px;
+        margin: 0 auto 32px;
+        animation: fade-up 0.8s ease both;
+      }
+
+      .avatar-wrap::before {
+        content: "";
+        position: absolute;
+        inset: -8px;
+        border-radius: 50%;
+        border: 1px solid var(--accent);
+        opacity: 0.4;
+        animation: spin 8s linear infinite;
+      }
+
+      .avatar-wrap::after {
+        content: "";
+        position: absolute;
+        inset: -16px;
+        border-radius: 50%;
+        border: 1px dashed rgba(99, 210, 255, 0.2);
+        animation: spin 12s linear infinite reverse;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fade-up {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-dim);
+        font-family: "DM Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        animation: fade-up 1s 0.8s ease both;
+      }
+
+      .scroll-line {
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(to bottom, var(--accent), transparent);
+        animation: scroll-pulse 2s infinite;
+      }
+
+      @keyframes scroll-pulse {
+        0% {
+          opacity: 0;
+          transform: scaleY(0);
+          transform-origin: top;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: scaleY(1);
+          transform-origin: top;
+        }
+      }
+
+      /* ── SECTIONS ── */
+      section {
+        padding: 100px 48px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .section-label {
+        font-family: "DM Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--accent);
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .section-label::before {
+        content: "";
+        width: 32px;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      .section-title {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 60px;
+        line-height: 1.1;
+      }
+
+      .section-title span {
+        color: var(--accent);
+      }
+
+      /* ── SKILLS ── */
+      #Skills {
+        background: var(--bg2);
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 16px;
+      }
+
+      .skill-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: none;
+        position: relative;
+        overflow: hidden;
+        group: true;
+      }
+
+      .skill-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(99, 210, 255, 0.05),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .skill-card:hover::before {
+        opacity: 1;
+      }
+
+      .skill-card:hover {
+        border-color: rgba(99, 210, 255, 0.4);
+        transform: translateY(-4px);
+        box-shadow: var(--glow);
+      }
+
+      .skill-icon {
+        font-size: 2rem;
+        margin-bottom: 12px;
+        display: block;
+      }
+
+      .skill-name {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+
+      .skill-desc {
+        font-size: 0.78rem;
+        color: var(--text-dim);
+        line-height: 1.5;
+        display: none;
+      }
+
+      .skill-card:hover .skill-desc {
+        display: block;
+      }
+      .skill-card:hover .skill-icon {
+        display: none;
+      }
+
+      /* ── PROJECTS ── */
+      #Projects {
+        background: var(--bg);
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 24px;
+      }
+
+      .project-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        transition: all 0.3s ease;
+        cursor: none;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease;
+      }
+
+      .project-card:hover::after {
+        transform: scaleX(1);
+      }
+
+      .project-card:hover {
+        border-color: rgba(99, 210, 255, 0.3);
+        transform: translateY(-6px);
+        box-shadow: var(--glow-strong);
+      }
+
+      .project-num {
+        font-family: "DM Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--accent);
+        letter-spacing: 2px;
+        margin-bottom: 16px;
+        opacity: 0.6;
+      }
+
+      .project-title {
+        font-family: "Syne", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: var(--text);
+      }
+
+      .project-desc {
+        font-size: 0.88rem;
+        color: var(--text-dim);
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 24px;
+      }
+
+      .tag {
+        padding: 4px 12px;
+        background: rgba(99, 210, 255, 0.08);
+        border: 1px solid rgba(99, 210, 255, 0.15);
+        border-radius: 100px;
+        font-family: "DM Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--accent);
+      }
+
+      .project-links {
+        display: flex;
+        gap: 12px;
+      }
+
+      .project-links a {
+        padding: 8px 18px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s;
+        cursor: none;
+        letter-spacing: 0.3px;
+      }
+
+      .link-live {
+        background: var(--accent);
+        color: var(--bg);
+      }
+
+      .link-live:hover {
+        background: var(--accent2);
+        box-shadow: 0 4px 20px rgba(0, 255, 157, 0.3);
+      }
+
+      .link-gh {
+        background: transparent;
+        color: var(--text-dim);
+        border: 1px solid var(--border);
+      }
+
+      .link-gh:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      /* ── ACHIEVEMENTS ── */
+      #Achievements {
+        background: var(--bg2);
+      }
+
+      .achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .achievement-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 32px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: none;
+      }
+
+      .achievement-card:hover {
+        border-color: rgba(255, 107, 107, 0.4);
+        transform: translateY(-4px);
+        box-shadow: 0 0 40px rgba(255, 107, 107, 0.1);
+      }
+
+      .ach-icon {
+        font-size: 2.5rem;
+        margin-bottom: 16px;
+        display: block;
+      }
+
+      .ach-title {
+        font-family: "Syne", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--text);
+      }
+
+      .ach-desc {
+        font-size: 0.85rem;
+        color: var(--text-dim);
+        line-height: 1.6;
+      }
+
+      /* ── CONTACT ── */
+      #Contact {
+        background: var(--bg);
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 16px;
+        margin-bottom: 48px;
+      }
+
+      .contact-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: all 0.3s ease;
+        cursor: none;
+      }
+
+      .contact-card:hover {
+        border-color: rgba(99, 210, 255, 0.4);
+        transform: translateY(-3px);
+        box-shadow: var(--glow);
+        color: var(--accent);
+      }
+
+      .contact-icon {
+        font-size: 1.5rem;
+        flex-shrink: 0;
+      }
+
+      .contact-info small {
+        display: block;
+        font-family: "DM Mono", monospace;
+        font-size: 0.65rem;
+        color: var(--text-dim);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+
+      .contact-info span {
+        font-size: 0.88rem;
+        font-weight: 500;
+      }
+
+      .resume-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 16px 40px;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        color: var(--bg);
+        text-decoration: none;
+        border-radius: 8px;
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        cursor: none;
+        letter-spacing: 0.3px;
+      }
+
+      .resume-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 40px rgba(99, 210, 255, 0.3);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--bg2);
+        border-top: 1px solid var(--border);
+        padding: 32px 48px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer-logo {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 1rem;
+      }
+
+      .footer-logo span {
+        color: var(--accent);
+      }
+
+      footer p {
+        font-family: "DM Mono", monospace;
+        font-size: 0.75rem;
+        color: var(--text-dim);
+      }
+
+      /* ── STATS BAR ── */
+      .stats-bar {
+        display: flex;
+        gap: 48px;
+        justify-content: center;
+        padding: 48px;
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        position: relative;
+        z-index: 1;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-num {
+        font-family: "Syne", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+
+      .stat-label {
+        font-family: "DM Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--text-dim);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      /* ── EDUCATION ── */
+      #Education {
+        background: var(--bg2);
+      }
+
+      .edu-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 700px;
+      }
+
+      .edu-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px 32px;
+        display: flex;
+        align-items: flex-start;
+        gap: 24px;
+        transition: all 0.3s ease;
+        cursor: none;
+      }
+
+      .edu-card:hover {
+        border-color: rgba(99, 210, 255, 0.3);
+        transform: translateX(6px);
+        box-shadow: var(--glow);
+      }
+
+      .edu-icon {
+        font-size: 1.8rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      .edu-title {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 4px;
+      }
+
+      .edu-sub {
+        font-size: 0.85rem;
+        color: var(--text-dim);
+        margin-bottom: 6px;
+      }
+
+      .edu-year {
+        font-family: "DM Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--accent);
+        letter-spacing: 1px;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 768px) {
+        nav {
+          padding: 16px 20px;
+        }
+        nav ul {
+          gap: 16px;
+        }
+        nav ul a {
+          font-size: 0.75rem;
+        }
+        .hero {
+          padding: 100px 20px 60px;
+        }
+        section {
+          padding: 70px 20px;
+        }
+        .skills-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+        .stats-bar {
+          gap: 24px;
+          padding: 32px 20px;
+          flex-wrap: wrap;
+        }
+        footer {
+          flex-direction: column;
+          gap: 12px;
+          text-align: center;
+          padding: 24px 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav ul {
+          display: none;
+        }
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        .skills-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+        }
+        .section-title {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <!-- NAVIGATION -->
-    <div class="header" id="Header">
-      <h1>Muneeb Hussain Anjam</h1>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- NAV -->
+    <nav>
+      <a href="#" class="nav-logo">M<span>.</span>H</a>
       <ul>
-        <li><a href="#Header">Home</a></li>
         <li><a href="#About">About</a></li>
         <li><a href="#Skills">Skills</a></li>
         <li><a href="#Projects">Projects</a></li>
         <li><a href="#Achievements">Achievements</a></li>
         <li><a href="#Contact">Contact</a></li>
-        <li><a href="#Resume">Resume</a></li>
       </ul>
-    </div>
+    </nav>
 
-    <!-- ABOUT -->
-    <div class="about" id="About">
-      <img src="images/1.jpg" alt="Muneeb Hussain Anjam" />
-      <h2>Muneeb Hussain Anjam</h2>
-      <h3>MERN Stack Developer</h3>
-      <p>
-        Passionate MERN Stack Developer skilled in building fast, scalable, and
-        production-ready web applications using MongoDB, Express.js, React, and
-        Node.js. Experienced in designing RESTful APIs, implementing JWT
-        authentication, and delivering responsive, user-focused interfaces.
-        Proven ability to manage full-stack projects end-to-end — from database
-        architecture to cloud deployment.
-      </p>
-      <div class="social-links">
-        <a href="https://github.com/MuneebHussain52" target="_blank">GitHub</a>
-        <a href="https://linkedin.com/in/mhussainn" target="_blank">LinkedIn</a>
-        <a href="mailto:muneeb525353@gmail.com">Email</a>
+    <!-- HERO -->
+    <section class="hero" id="About">
+      <div class="hero-glow"></div>
+      <div class="hero-content">
+        <div class="avatar-wrap">
+          <img src="images/1.jpg" alt="Muneeb Hussain" class="hero-avatar" />
+        </div>
+        <div class="hero-badge">🟢 Available for Junior Dev Roles</div>
+        <h1><span class="name-accent">Muneeb</span><br />Hussain Anjam</h1>
+        <p class="hero-role">
+          <span class="highlight">// </span>Full Stack MERN Developer
+          <span class="highlight"> · </span>Bahria University, Islamabad
+        </p>
+        <p class="hero-desc">
+          Passionate about building fast, scalable, production-ready web
+          applications. Skilled in React, Node.js, MongoDB & Express — from
+          database architecture to cloud deployment.
+        </p>
+        <div class="hero-cta">
+          <a href="#Projects" class="btn-primary">View Projects</a>
+          <a href="#Contact" class="btn-outline">Get In Touch</a>
+          <a
+            href="https://github.com/MuneebHussain52"
+            target="_blank"
+            class="btn-outline"
+            >GitHub</a
+          >
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <div class="scroll-line"></div>
+        scroll
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Projects Built</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">🥇</div>
+        <div class="stat-label">Dechthon 2025</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Tech Skills</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4K+</div>
+        <div class="stat-label">AI Datapoints</div>
       </div>
     </div>
 
     <!-- SKILLS -->
-    <div class="skills" id="Skills">
-      <h2>Skills</h2>
-      <ul>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">React</div>
-            <div class="card-back">
-              Building dynamic, responsive user interfaces using React Hooks,
-              Context API, and state management. Experienced with
-              component-based architecture and modern React patterns.
-            </div>
+    <section id="Skills">
+      <div class="section-label">What I Know</div>
+      <h2 class="section-title">Tech <span>Stack</span></h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <span class="skill-icon">⚛️</span>
+          <div class="skill-name">React</div>
+          <div class="skill-desc">
+            Dynamic UIs with Hooks, Context API & component-based architecture.
           </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">Node.js</div>
-            <div class="card-back">
-              Building scalable server-side applications using Node.js and
-              Express.js. Experienced in REST API design, middleware, and
-              backend architecture.
-            </div>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">🟢</span>
+          <div class="skill-name">Node.js</div>
+          <div class="skill-desc">
+            Scalable server-side apps with Express, middleware & REST API
+            design.
           </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">MongoDB</div>
-            <div class="card-back">
-              Designing and optimizing MongoDB schemas for production
-              applications. Experienced with Mongoose, aggregation pipelines,
-              and MongoDB Atlas cloud deployment.
-            </div>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">🍃</span>
+          <div class="skill-name">MongoDB</div>
+          <div class="skill-desc">
+            Schema design, Mongoose, aggregations & MongoDB Atlas cloud.
           </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">Express.js</div>
-            <div class="card-back">
-              Building RESTful APIs with Express.js including authentication
-              middleware, route protection, CORS configuration, and error
-              handling.
-            </div>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">🚀</span>
+          <div class="skill-name">Express.js</div>
+          <div class="skill-desc">
+            RESTful APIs with auth middleware, CORS config & error handling.
           </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">JavaScript</div>
-            <div class="card-back">
-              Strong foundation in modern JavaScript (ES6+) including
-              async/await, promises, destructuring, and functional programming
-              patterns.
-            </div>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">🌐</span>
+          <div class="skill-name">JavaScript</div>
+          <div class="skill-desc">
+            Modern ES6+: async/await, promises, destructuring, functional
+            patterns.
           </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">TypeScript</div>
-            <div class="card-back">
-              Writing type-safe code with TypeScript to improve code quality,
-              catch errors early, and build more maintainable applications.
-            </div>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">🔷</span>
+          <div class="skill-name">TypeScript</div>
+          <div class="skill-desc">
+            Type-safe code for better quality, fewer errors, more maintainable
+            apps.
           </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">Tailwind CSS</div>
-            <div class="card-back">
-              Building modern, responsive UIs rapidly with Tailwind CSS utility
-              classes. Experienced in creating clean, consistent designs across
-              devices.
-            </div>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">🎨</span>
+          <div class="skill-name">Tailwind CSS</div>
+          <div class="skill-desc">
+            Modern responsive UIs rapidly with utility-first approach.
           </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">JWT Auth</div>
-            <div class="card-back">
-              Implementing secure authentication systems using JSON Web Tokens,
-              including token generation, verification, refresh tokens, and
-              role-based access control.
-            </div>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">🔐</span>
+          <div class="skill-name">JWT Auth</div>
+          <div class="skill-desc">
+            Secure auth with token generation, verification & role-based
+            control.
           </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">Docker</div>
-            <div class="card-back">
-              Containerizing applications with Docker for consistent development
-              and deployment environments. Experienced with Dockerfiles and
-              container configuration.
-            </div>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">🐳</span>
+          <div class="skill-name">Docker</div>
+          <div class="skill-desc">
+            Containerizing apps for consistent dev & deployment environments.
           </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">Git & GitHub</div>
-            <div class="card-back">
-              Version control with Git including branching, rebasing, pull
-              requests, and collaborative workflows. All projects maintained on
-              GitHub with clean commit history.
-            </div>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">🐙</span>
+          <div class="skill-name">Git & GitHub</div>
+          <div class="skill-desc">
+            Branching, rebasing, PRs & collaborative development workflows.
           </div>
-        </li>
-      </ul>
-    </div>
+        </div>
+      </div>
+    </section>
 
     <!-- PROJECTS -->
-    <div class="projects" id="Projects">
-      <h2>Projects</h2>
-      <ul>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">Connectify</div>
-            <div class="card-back">
-              A full-stack MERN social media platform with user authentication,
-              post creation, likes, comments, and follow system. Deployed on
-              Vercel (frontend) and Render (backend) with MongoDB Atlas.
-              <br /><br />
-              <a href="https://connectify-new-delta.vercel.app" target="_blank"
-                >Live Demo</a
-              >
-              |
-              <a
-                href="https://github.com/MuneebHussain52/Connectify"
-                target="_blank"
-                >GitHub</a
-              >
-            </div>
+    <section id="Projects">
+      <div class="section-label">What I've Built</div>
+      <h2 class="section-title">Featured <span>Projects</span></h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-num">01 / MERN Stack</div>
+          <div class="project-title">Connectify</div>
+          <p class="project-desc">
+            Full-stack social media platform with user authentication, post
+            creation, likes, comments, and follow system. Deployed on Vercel +
+            Render with MongoDB Atlas.
+          </p>
+          <div class="project-tags">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">JWT</span>
+            <span class="tag">Vercel</span>
           </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">Doctor Recommendation Platform</div>
-            <div class="card-back">
-              Final Year Project — A full-stack web application built with React
-              and Django featuring multi-role dashboards for patients, doctors,
-              and admins. Integrates a locally deployed AI model trained on
-              4,000+ data points.
-              <br /><br />
-              <a
-                href="https://github.com/MuneebHussain52/Doctor-Recommendation-Platform"
-                target="_blank"
-                >GitHub</a
-              >
-            </div>
+          <div class="project-links">
+            <a
+              href="https://connectify-new-delta.vercel.app"
+              target="_blank"
+              class="link-live"
+              >Live Demo ↗</a
+            >
+            <a
+              href="https://github.com/MuneebHussain52/Connectify"
+              target="_blank"
+              class="link-gh"
+              >GitHub</a
+            >
           </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">Resume Matcher</div>
-            <div class="card-back">
-              A responsive web application for uploading resumes and matching
-              them against job descriptions. Features a clean multi-page UI with
-              Home, Results, About and Contact pages. Deployed on Netlify.
-              <br /><br />
-              <a
-                href="https://github.com/MuneebHussain52/jobfit-ui"
-                target="_blank"
-                >GitHub</a
-              >
-            </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">02 / Final Year Project</div>
+          <div class="project-title">Doctor Recommendation Platform</div>
+          <p class="project-desc">
+            Full-stack web application with multi-role dashboards for patients,
+            doctors, and admins. Integrates a locally deployed AI model trained
+            on 4,000+ data points.
+          </p>
+          <div class="project-tags">
+            <span class="tag">React</span>
+            <span class="tag">Django</span>
+            <span class="tag">Python</span>
+            <span class="tag">ML Model</span>
           </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">Portfolio Website</div>
-            <div class="card-back">
-              A responsive personal portfolio website built with HTML, CSS, and
-              JavaScript showcasing skills, projects, and experience.
-              <br /><br />
-              <a href="https://muneebhussain53.netlify.app" target="_blank"
-                >Live Demo</a
-              >
-              |
-              <a
-                href="https://github.com/MuneebHussain52/Portfolio-Website"
-                target="_blank"
-                >GitHub</a
-              >
-            </div>
+          <div class="project-links">
+            <a
+              href="https://github.com/MuneebHussain52/Doctor-Recommendation-Platform"
+              target="_blank"
+              class="link-gh"
+              >GitHub ↗</a
+            >
           </div>
-        </li>
-      </ul>
-    </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">03 / Web App</div>
+          <div class="project-title">Resume Matcher</div>
+          <p class="project-desc">
+            Responsive web application for uploading resumes and matching them
+            against job descriptions. Multi-page UI with clean design. Deployed
+            on Netlify.
+          </p>
+          <div class="project-tags">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Netlify</span>
+          </div>
+          <div class="project-links">
+            <a
+              href="https://github.com/MuneebHussain52/jobfit-ui"
+              target="_blank"
+              class="link-gh"
+              >GitHub ↗</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-num">04 / Portfolio</div>
+          <div class="project-title">Portfolio Website</div>
+          <p class="project-desc">
+            Responsive personal portfolio showcasing skills, projects, and
+            experience. Built with HTML, CSS, and JavaScript with smooth
+            animations.
+          </p>
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+          <div class="project-links">
+            <a
+              href="https://muneebhussain53.netlify.app"
+              target="_blank"
+              class="link-live"
+              >Live Demo ↗</a
+            >
+            <a
+              href="https://github.com/MuneebHussain52/Portfolio-Website"
+              target="_blank"
+              class="link-gh"
+              >GitHub</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ACHIEVEMENTS -->
-    <div class="achievements" id="Achievements">
-      <h2>Achievements</h2>
-      <ul>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">1st Position — Dechthon 2025</div>
-            <div class="card-back">
-              Scored 110/120 in the Frontend Quiz at Dechthon 2025, a live
-              coding competition demonstrating expertise in HTML5, CSS3, and
-              responsive design.
-            </div>
-          </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">Full Stack Deployment</div>
-            <div class="card-back">
-              Successfully deployed a complete MERN stack application
-              (Connectify) with frontend on Vercel, backend on Render, and
-              database on MongoDB Atlas.
-            </div>
-          </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">AI-Powered FYP</div>
-            <div class="card-back">
-              Designed and integrated a machine learning recommendation model
-              trained on 4,000+ data points into a full-stack web platform as
-              part of Final Year Project at Bahria University.
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <section id="Achievements">
+      <div class="section-label">Recognition</div>
+      <h2 class="section-title">Achieve<span>ments</span></h2>
+      <div class="achievements-grid">
+        <div class="achievement-card">
+          <span class="ach-icon">🥇</span>
+          <div class="ach-title">1st Position — Dechthon 2025</div>
+          <p class="ach-desc">
+            Scored 110/120 in the Frontend Quiz at Dechthon 2025, demonstrating
+            expertise in HTML5, CSS3, and responsive design in a live
+            competition.
+          </p>
+        </div>
+        <div class="achievement-card">
+          <span class="ach-icon">☁️</span>
+          <div class="ach-title">Full Stack Deployment</div>
+          <p class="ach-desc">
+            Successfully deployed a complete MERN stack application with
+            frontend on Vercel, backend on Render, and database on MongoDB
+            Atlas.
+          </p>
+        </div>
+        <div class="achievement-card">
+          <span class="ach-icon">🤖</span>
+          <div class="ach-title">AI-Powered FYP</div>
+          <p class="ach-desc">
+            Designed and integrated a machine learning recommendation model
+            trained on 4,000+ data points into a full-stack web platform at
+            Bahria University.
+          </p>
+        </div>
+      </div>
+    </section>
 
     <!-- EDUCATION -->
-    <div class="qualification" id="Qualification">
-      <h2>Education</h2>
-      <ul>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">BS Computer Science</div>
-            <div class="card-back">
-              Currently studying Bachelor of Science in Computer Science at
-              Bahria University, Islamabad (2022 — Present). Final Year Project:
-              Doctor Recommendation Platform with AI integration.
+    <section id="Education">
+      <div class="section-label">Background</div>
+      <h2 class="section-title">Edu<span>cation</span></h2>
+      <div class="edu-list">
+        <div class="edu-card">
+          <div class="edu-icon">🎓</div>
+          <div>
+            <div class="edu-title">BS Computer Science</div>
+            <div class="edu-sub">
+              Bahria University, Islamabad · FYP: Doctor Recommendation Platform
+              with AI
             </div>
+            <div class="edu-year">2022 — 2026</div>
           </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">Intermediate</div>
-            <div class="card-back">
-              Completed Intermediate from Cambridge International Science
-              College, Talagang (2019 — 2021). Strong foundation in computer
-              science and mathematics.
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon">🏫</div>
+          <div>
+            <div class="edu-title">Intermediate — Computer Science</div>
+            <div class="edu-sub">
+              Cambridge International Science College, Talagang
             </div>
+            <div class="edu-year">2019 — 2021</div>
           </div>
-        </li>
-        <li class="card">
-          <div class="card-inner">
-            <div class="card-front">Fluxxion Fellowship</div>
-            <div class="card-back">
-              MERN Stack Development training covering MongoDB, Express.js,
-              React, and Node.js. Hands-on experience with REST API development,
-              authentication, and deployment workflows.
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon">💻</div>
+          <div>
+            <div class="edu-title">Fluxxion Fellowship — MERN Stack</div>
+            <div class="edu-sub">
+              MongoDB, Express, React, Node.js · REST APIs, Auth, Deployment
             </div>
+            <div class="edu-year">Certification</div>
           </div>
-        </li>
-      </ul>
-    </div>
+        </div>
+      </div>
+    </section>
 
     <!-- CONTACT -->
-    <div class="contact" id="Contact">
-      <h2>Contact</h2>
-      <ul>
-        <li>📞 Phone: +92 325 9094973</li>
-        <li>
-          📧 Email:
-          <a href="mailto:muneeb525353@gmail.com">muneeb525353@gmail.com</a>
-        </li>
-        <li>
-          💼 LinkedIn:
-          <a href="https://linkedin.com/in/mhussainn" target="_blank"
-            >linkedin.com/in/mhussainn</a
-          >
-        </li>
-        <li>
-          🐙 GitHub:
-          <a href="https://github.com/MuneebHussain52" target="_blank"
-            >github.com/MuneebHussain52</a
-          >
-        </li>
-      </ul>
-    </div>
-
-    <!-- RESUME -->
-    <div class="resume" id="Resume">
-      <h2>Resume</h2>
-      <a href="files/Resume.pdf">Download Resume</a>
-    </div>
+    <section id="Contact">
+      <div class="section-label">Let's Talk</div>
+      <h2 class="section-title">Get In <span>Touch</span></h2>
+      <div class="contact-grid">
+        <a href="tel:+923259094973" class="contact-card">
+          <div class="contact-icon">📞</div>
+          <div class="contact-info">
+            <small>Phone</small>
+            <span>+92 325 9094973</span>
+          </div>
+        </a>
+        <a href="mailto:muneeb525353@gmail.com" class="contact-card">
+          <div class="contact-icon">📧</div>
+          <div class="contact-info">
+            <small>Email</small>
+            <span>muneeb525353@gmail.com</span>
+          </div>
+        </a>
+        <a
+          href="https://linkedin.com/in/mhussainn"
+          target="_blank"
+          class="contact-card"
+        >
+          <div class="contact-icon">💼</div>
+          <div class="contact-info">
+            <small>LinkedIn</small>
+            <span>linkedin.com/in/mhussainn</span>
+          </div>
+        </a>
+        <a
+          href="https://github.com/MuneebHussain52"
+          target="_blank"
+          class="contact-card"
+        >
+          <div class="contact-icon">🐙</div>
+          <div class="contact-info">
+            <small>GitHub</small>
+            <span>MuneebHussain52</span>
+          </div>
+        </a>
+      </div>
+      <a href="files/Resume.pdf" class="resume-btn" id="Resume">
+        ⬇ Download Resume
+      </a>
+    </section>
 
     <!-- FOOTER -->
-    <div class="footer" id="Footer">
-      <p>&copy; 2026 Muneeb Hussain Anjam. All rights reserved.</p>
-    </div>
+    <footer>
+      <div class="footer-logo">M<span>.</span>H</div>
+      <p>© 2026 Muneeb Hussain Anjam · Built with passion</p>
+    </footer>
 
-    <script src="script.js"></script>
+    <script>
+      // Custom cursor
+      const cursor = document.getElementById("cursor");
+      const ring = document.getElementById("cursorRing");
+      let mouseX = 0,
+        mouseY = 0,
+        ringX = 0,
+        ringY = 0;
+
+      document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.style.left = mouseX - 5 + "px";
+        cursor.style.top = mouseY - 5 + "px";
+      });
+
+      function animateRing() {
+        ringX += (mouseX - ringX - 18) * 0.12;
+        ringY += (mouseY - ringY - 18) * 0.12;
+        ring.style.left = ringX + "px";
+        ring.style.top = ringY + "px";
+        requestAnimationFrame(animateRing);
+      }
+      animateRing();
+
+      // Cursor scale on hover
+      document
+        .querySelectorAll(
+          "a, button, .skill-card, .project-card, .achievement-card, .edu-card, .contact-card",
+        )
+        .forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            cursor.style.transform = "scale(2)";
+            ring.style.transform = "scale(1.5)";
+            ring.style.opacity = "0.8";
+          });
+          el.addEventListener("mouseleave", () => {
+            cursor.style.transform = "scale(1)";
+            ring.style.transform = "scale(1)";
+            ring.style.opacity = "0.5";
+          });
+        });
+
+      // Scroll reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll(
+          ".skill-card, .project-card, .achievement-card, .edu-card, .contact-card, .stat-item",
+        )
+        .forEach((el, i) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(30px)";
+          el.style.transition = `opacity 0.5s ${i * 0.05}s ease, transform 0.5s ${i * 0.05}s ease`;
+          observer.observe(el);
+        });
+    </script>
   </body>
 </html>
